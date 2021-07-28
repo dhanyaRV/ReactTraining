@@ -1,0 +1,10 @@
+.App {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color:ivory */
+    background: url(bg.jpg) no-repeat;
+    background-size: cover;
+    
+}
