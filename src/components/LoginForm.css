@@ -1,8 +1,10 @@
+
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: Georgia, 'Times New Roman', Times, serif;
+    
 }
 
 .App {
@@ -10,7 +12,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color:ivory
+    /* background-color:ivory */
+    background: url(bg.jpg) no-repeat;
+    background-size: cover;
+    
+    
 
 
 }
@@ -39,10 +45,12 @@ form .form-inner{
 
 }
 form .form-inner h2{
+
     
     font-size: 28px;
     font-weight: 500;
     margin-bottom: 30px;
+    border-bottom: 6px solid #4caf50;
 }
 form .form-inner .form-group{
     display: block;
