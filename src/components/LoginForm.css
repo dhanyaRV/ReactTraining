@@ -102,3 +102,16 @@ form .form-inner input[type="submit"]{
 form .form-inner input[type="submit"]:hover{
     background-position: 100%;
 }
+form .form-inner .error-msg{
+    font-size: 12px;
+    width: 100%;
+    color: red;
+}
+
+
+form .form-inner .success-msg{
+    width: 100%;
+    background-color: #0f834d;
+    color: #fff;
+    font-weight: 600;
+}
