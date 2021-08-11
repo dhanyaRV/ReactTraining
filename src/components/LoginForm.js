@@ -1,74 +1,56 @@
-import React, { useState } from "react";
+import React from "react";
+import { useFormik } from "formik";
 import "./LoginForm.css";
 
-function LoginForm() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [emailError, setEmailError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
-  const [succMsg, setSuccMsg] = useState("");
+const initialValues = {
+  email: "",
+  password: "",
+};
+const onSubmit = (values) => {
+  console.log("Form data", values);
+};
 
-  const emailChangeHandler = (e) => {
-    setSuccMsg("");
-    setEmailError("");
-    setEmail(e.target.value);
-  };
-  const passwordChangeHandler = (e) => {
-    setSuccMsg("");
-    setPasswordError("");
-    setPassword(e.target.value);
-  };
+const validate = (values) => {
+  let errors = {};
 
-  const submitHandler = (e) => {
-    e.preventDefault();
-    if (email !== "") {
-      const emailRegex = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
-      if (emailRegex.test(email)) {
-        // setEmailError("");
-        if (email === "admin@demo.com") {
-          // setEmailError("");
-          if (password === "demo") {
-            setSuccMsg("you are successfully logged in!!");
-          } else {
-            setEmailError("Password doesnot match");
-          }
-        } else {
-          setEmailError("email doesnot match");
-        }
-      } else {
-        setEmailError("Invalid Email");
-      }
-    } else {
-      setEmailError("Email Required");
-    }
-    if (password !== "") {
-    } else {
-      setPasswordError("Password Required");
-    }
+  if (!values.email) {
+    errors.email = "Required";
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    errors.email = "Invalid email format";
+  }
 
-    const formData = {
-      loggedemail: email,
-      loggedpassword: password,
-    };
-    console.log(formData);
-  };
+  if (!values.password) {
+    errors.password = "Required";
+  }
 
+  return errors;
+};
+
+const LoginForm = () => {
+  const formik = useFormik({
+    initialValues,
+    onSubmit,
+    validate,
+    // validationSchema
+  });
+  //   console.log("Form errors", formik.errors);
+  //   console.log("visited fields", formik.touched);
   return (
-    <form onSubmit={submitHandler}>
+    <form onSubmit={formik.handleSubmit}>
       <div className="form-inner">
         <h2>Login</h2>
-        {succMsg && <div className="success-msg">{succMsg}</div>}
         <div className="form-group">
           <label htmlFor="email">Email:</label>
           <input
             type="email"
             name="email"
             id="email"
-            value={email}
-            onChange={emailChangeHandler}
+            onChange={formik.handleChange}
+            value={formik.values.email}
           />
-          <br></br>
-          {emailError && <div className="error-msg">{emailError}</div>}
+          {formik.touched.email && formik.errors.email ? (
+            <div className="error">{formik.errors.email}</div>
+          ) : null}
         </div>
         <div className="form-group">
           <label htmlFor="password">Password:</label>
@@ -76,17 +58,17 @@ function LoginForm() {
             type="password"
             name="password"
             id="password"
-            onChange={passwordChangeHandler}
-            value={password}
+            onChange={formik.handleChange}
+            value={formik.values.password}
           />
-          <br></br>
-
-          {passwordError && <div className="error-msg">{passwordError}</div>}
+          {formik.touched.password && formik.errors.password ? (
+            <div className="error">{formik.errors.password}</div>
+          ) : null}
         </div>
         <input type="submit" value="LOGIN" />
       </div>
     </form>
   );
-}
+};
 
 export default LoginForm;
