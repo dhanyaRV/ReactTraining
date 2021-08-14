@@ -18,7 +18,7 @@ function App() {
   return (
     <div>
       <h2>NORMAL</h2>
-      <Button primary>button</Button>&nbsp;&nbsp;&nbsp;
+      <Button variant="primary">button</Button>&nbsp;&nbsp;&nbsp;
       <Button >button</Button>&nbsp;&nbsp;&nbsp;
       <Button >button</Button>&nbsp;&nbsp;&nbsp;
       
