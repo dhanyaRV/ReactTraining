@@ -1,5 +1,6 @@
 export const colors = {
     
+    blur:'#edd8da',
     white: '#fff',
     black: '#000',  
     gray: '#818181',
