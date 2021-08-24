@@ -1,0 +1,11 @@
+.content {
+    background-color:darkmagenta;
+    width: 500px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: medium;
+    margin-left: 500px;
+}
+
+.list{
+    color: cornsilk;
+}
